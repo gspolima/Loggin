@@ -11,6 +11,7 @@
     <script src="./dependencies/uikit/js/uikit.min.js"></script>
     <script src="./dependencies/uikit/js/uikit-icons.min.js"></script>
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./styles.css" />
     <title>Loggin</title>
 </head>
 <body>
