@@ -1,0 +1,33 @@
+CREATE DATABASE LOGGIN;
+DROP TABLE USUARIOS;
+
+CREATE TABLE USUARIOS (
+	ID INT auto_increment not null unique,
+    LOGIN VARCHAR(25) not null unique,
+    EMAIL VARCHAR(60) not null unique,
+    CPF VARCHAR(11) not null unique,
+    DATA_NASCIMENTO DATE,
+    
+    PRIMARY KEY(ID),
+    INDEX PK_IDX(ID),
+    INDEX CPF_IDX(CPF),
+    INDEX LOGIN_IDX(LOGIN)
+);
+
+SELECT * FROM USUARIOS;
+
+DELETE FROM USUARIOS
+WHERE ID IN (1, 2, 3);
+
+CREATE TABLE ENDERECOS (
+	ID INT auto_increment not null unique,
+    USUARIO_ID INT not null,
+    EMAIL VARCHAR(60) not null unique,
+    CPF VARCHAR(11) not null unique,
+    DATA_NASCIMENTO DATE,
+    
+    PRIMARY KEY(ID),
+    FOREIGN KEY(USUARIO_ID) REFERENCES USUARIOS(ID),
+    INDEX PK_IDX(ID),
+    INDEX USUARIO_ID_IDX(USUARIO_ID)
+);

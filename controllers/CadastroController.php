@@ -17,59 +17,68 @@ class CadastroController{
             echo 'Conexão realizada com sucesso!';
             return $conexao;
         }catch(PDOException $e){
-            echo 'Falha na concexão ==> '.$e->getMessage();
+            echo 'Falha na conexão ==> '.$e->getMessage();
         }
     }
 
-    function inserir($matricula,$nome, $cpf){
+    function inserir($login, $email, $cpf, $dataNascimento) {
         $conexao = $this->abrirConexao();
-        if($matricula != null &&  $nome != null){
 
-            try {
-                $cont = $conexao->exec(
-                    "INSERT INTO ALUNO (MATRICULA, NOME, CPF) VALUES ($matricula, '$nome', '$cpf')");
-                if ($cont < 1) {
-                    echo 'erro';
-                }
-                else {
-                    echo "$cont Registros foram inclusos!";
-                }
-            } catch (PDOException $excecao) {
+        try {
+            $sql = "INSERT INTO USUARIOS (LOGIN, EMAIL, CPF, DATA_NASCIMENTO) VALUES (:login, :email, :cpf, :dataNascimento)";
 
-                echo 'Erro ao inserir devido a '.$excecao->getMessage();
-            }    
-        }
-    }
+            $preparedSql = $conexao->prepare($sql);
+            $preparedSql->bindParam(":login", $login);
+            $preparedSql->bindParam(":email", $email);
+            $preparedSql->bindParam(":cpf", $cpf);
+            $preparedSql->bindParam(":dataNascimento", $dataNascimento);
 
-    function atualizar($matricula, $nome) {
-        if ($matricula != null && $nome != null) {
-            $conexao = $this->abrirConexao();
-            $cont = $conexao->exec("UPDATE ALUNO SET NOME = '$nome' WHERE MATRICULA = $matricula");
-
-            if($cont > 0) {
-                echo "<p>$cont atualizados com sucesso</p>";
-            } else {
-                echo "<p>Não foi possível atualizar</p>";
+            $query = $preparedSql->execute();
+            if ($query > 0) {
+                echo "$query registros foram inclusos!";
             }
+        } catch (PDOException $excecao) {
+            echo 'Erro ao inserir devido a '.$excecao->getMessage();
         }
     }
 
+    function getUsuarioCadastrado($login) {
+        $conexao = $this->abrirConexao();
+
+        try {
+            $sql = "SELECT ID, LOGIN, CPF FROM USUARIOS WHERE LOGIN = :login";
+
+            $preparedSql = $conexao->prepare($sql);
+            $preparedSql->bindParam(":login", $login);
+
+            $preparedSql->execute();
+
+            foreach ($preparedSql as $row) {
+                echo "ID $row[0] --- Login $row[1] --- CPF $row[2]";
+            }
+
+        } catch (PDOException $excecao) {
+            echo 'Erro ao inserir devido a '.$excecao->getMessage();
+        }
+    }
 }
 
 $servidor = new CadastroController();
-$servidor->abrirConexao();
 
-// if ($_POST['matricula'] && $_POST['nome']){
+$login = $_POST['login'];
+$email = $_POST['email'];
+$cpf = $_POST['cpf'];
+$dataNascimento = $_POST['dataNascimento'];
 
-//     $matricula = $_POST['matricula'];
-//     $nome = $_POST['nome'];
-//     $cpf = $_POST['cpf'];
+if ($login && $email && $cpf && $dataNascimento) {
 
-//     try {
-//         $servidor->inserir($matricula,$nome, $cpf);    
-//     }
-//     catch(PDOException $e) {
-//         echo "<h1>Erro --- </h1>".$e->getMessage();
-//     }
-// }
+    try {
+        $servidor->inserir($login, $email, $cpf, $dataNascimento);
+        $servidor->getUsuarioCadastrado($login);
+    }
+    catch(PDOException $e) {
+        echo "<h1>Erro ao inserir--- </h1>".$e->getMessage();
+    }
+}
+
 ?>
