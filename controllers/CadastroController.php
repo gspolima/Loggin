@@ -16,7 +16,6 @@ class CadastroController extends DbContext {
             $sql = "INSERT INTO USUARIOS (LOGIN, EMAIL, CPF, DATA_NASCIMENTO) VALUES (:login, :email, :cpf, :dataNascimento)";
 
             $preparedSql = $this->dbConnection->prepare($sql);
-            echo "#2<br>";
             $preparedSql->bindParam(":login", $login);
             $preparedSql->bindParam(":email", $email);
             $preparedSql->bindParam(":cpf", $cpf);
@@ -37,7 +36,6 @@ class CadastroController extends DbContext {
             $sql = "SELECT ID, LOGIN FROM USUARIOS WHERE LOGIN = :login";
 
             $preparedSql = $this->dbConnection->prepare($sql);
-            echo "#3<br>";
             $preparedSql->bindParam(":login", $login);
 
             $sucesso = $preparedSql->execute();
@@ -56,7 +54,6 @@ class CadastroController extends DbContext {
             $sql = "INSERT INTO ENDERECOS (USUARIO_ID, CEP, LOGRADOURO, NUMERO, BAIRRO, CIDADE, UF) VALUES (:usuarioId, :cep, :logradouro, :numero, :bairro, :cidade, :uf)";
 
             $preparedSql = $this->dbConnection->prepare($sql);
-            echo "#4<br>";
             $preparedSql->bindParam(":usuarioId", $usuarioId);
             $preparedSql->bindParam(":cep", $cep);
             $preparedSql->bindParam(":logradouro", $logradouro);

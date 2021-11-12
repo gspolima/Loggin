@@ -1,18 +1,18 @@
-function validarLogin(valor) {
+function validarBairro(valor) {
     if (valor === null || valor === '')
-        return 'Insira um login';
-
+        return 'Insira um bairro ou distrito';
+    
     let tamanho = valor.length;
-    if (tamanho < 4)
-        return 'Login deve ter pelo menos 4 caracteres';
+    if (tamanho < 2)
+        return 'Bairro deve ter pelo menos 2 caracteres';
 
     return true;
 }
 
-function validarCampoLogin(valor) {
+function validarCampoBairro(valor) {
     $(function () {
-        const $campoErro = $('#erroLogin');
-        const retorno = validarLogin(valor);
+        const $campoErro = $('#erroBairro');
+        const retorno = validarBairro(valor);
 
         if(retorno !== true) {
             $campoErro.addClass('uk-text-danger').text(retorno);

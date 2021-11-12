@@ -26,12 +26,32 @@ function validarCEP(valor) {
 function validarCampoCEP(valor) {
     $(function () {
         const $campoErro = $('#erroCEP');
+        const $campo = $('#cep');
+        let valorLimpo = removerPontosTracos(valor);
 
-        if(validarCEP(valor) === false) {
-            $campoErro.addClass('uk-text-danger').text('CEP deve ser preenchido');
+        $campo.val(valorLimpo);
+
+        if(validarCEP(valorLimpo) === false) {
+            $campoErro.addClass('uk-text-danger').text('CEP Inválido');
         }
         else {
             $campoErro.removeClass('uk-text-danger').text('');
         }
     });
+}
+
+ function removerPontosTracos(valorCru) {
+    let limpo = false;
+    let valorAtual = valorCru;
+    const regex = /[^0-9]/;
+
+    while(limpo === false) {
+        valorAtual = valorAtual.replace(regex, "");
+        let contemPontoTraco = valorAtual.includes(".") || valorAtual.includes("-");
+
+        if (contemPontoTraco === false)
+            limpo = true;
+    }
+
+    return valorAtual;
 }

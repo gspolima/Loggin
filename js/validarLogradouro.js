@@ -1,18 +1,18 @@
-function validarLogin(valor) {
+function validarLogradouro(valor) {
     if (valor === null || valor === '')
-        return 'Insira um login';
+        return 'Insira uma rua/avenida';
 
     let tamanho = valor.length;
-    if (tamanho < 4)
-        return 'Login deve ter pelo menos 4 caracteres';
+    if (tamanho < 5)
+        return 'Logradouro deve ter pelo menos 5 caracteres';
 
     return true;
 }
 
-function validarCampoLogin(valor) {
+function validarCampoLogradouro(valor) {
     $(function () {
-        const $campoErro = $('#erroLogin');
-        const retorno = validarLogin(valor);
+        const $campoErro = $('#erroLogradouro');
+        const retorno = validarLogradouro(valor);
 
         if(retorno !== true) {
             $campoErro.addClass('uk-text-danger').text(retorno);
