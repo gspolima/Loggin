@@ -15,11 +15,12 @@ CREATE TABLE USUARIOS (
 );
 
 SELECT * FROM USUARIOS;
+SELECT * FROM ENDERECOS;
 
 insert into usuarios (login, email, cpf, data_nascimento) values ('teste', 'teste@teste.com', '08277083350', '1990-01-01');
 
 DELETE FROM USUARIOS
-WHERE ID IN (4);
+WHERE ID IN (9);
 
 CREATE TABLE ENDERECOS (
 	ID INT AUTO_INCREMENT NOT NULL UNIQUE,

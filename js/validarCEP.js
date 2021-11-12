@@ -12,7 +12,7 @@ function validarCEP(valor) {
     $.getJSON(url, function (dadosRetorno) {
         try {
             // Preenche os campos de acordo com o retorno da pesquisa
-            $("#endereco").val(dadosRetorno.logradouro);
+            $("#logradouro").val(dadosRetorno.logradouro);
             $("#bairro").val(dadosRetorno.bairro);
             $("#cidade").val(dadosRetorno.localidade);
             $("#uf").val(dadosRetorno.uf);

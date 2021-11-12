@@ -1,67 +1,82 @@
 <?php
 
-class CadastroController{ 
+include_once './DbContext.php';
 
-    function abrirConexao (){
+class CadastroController extends DbContext {
 
-        $options = array(
-            PDO::MYSQL_ATTR_SSL_CA => '../certificates/DigiCertGlobalRootCA.crt.pem' // path to certificate
-        );
+    private PDO $dbConnection;
 
-        $dns = 'mysql:host=phpcrudestacio.mysql.database.azure.com;port=3306;dbname=loggin';
-        $usuario='gustavo';
-        $senha='Minixbetterthanminix00$';
-
-        try{
-            $conexao= new PDO($dns,$usuario,$senha, $options);
-            echo 'Conexão realizada com sucesso!';
-            return $conexao;
-        }catch(PDOException $e){
-            echo 'Falha na conexão ==> '.$e->getMessage();
-        }
+    public function __construct()
+    {
+        $this->dbConnection = $this->abrirConexao();
     }
 
-    function inserir($login, $email, $cpf, $dataNascimento) {
-        $conexao = $this->abrirConexao();
-
+    function inserirUsuario($login, $email, $cpf, $dataNascimento) {
         try {
             $sql = "INSERT INTO USUARIOS (LOGIN, EMAIL, CPF, DATA_NASCIMENTO) VALUES (:login, :email, :cpf, :dataNascimento)";
 
-            $preparedSql = $conexao->prepare($sql);
+            $preparedSql = $this->dbConnection->prepare($sql);
+            echo "#2<br>";
             $preparedSql->bindParam(":login", $login);
             $preparedSql->bindParam(":email", $email);
             $preparedSql->bindParam(":cpf", $cpf);
             $preparedSql->bindParam(":dataNascimento", $dataNascimento);
 
-            $query = $preparedSql->execute();
-            if ($query > 0) {
-                echo "$query registros foram inclusos!";
+            $result = $preparedSql->execute();
+            if ($result > 0) {
+                echo "$result usuário foi incluso<br>";
             }
+
         } catch (PDOException $excecao) {
-            echo 'Erro ao inserir devido a '.$excecao->getMessage();
+            echo "Erro ao inserir usuário devido a ".$excecao->getMessage()."<br>";
         }
     }
 
     function getUsuarioCadastrado($login) {
-        $conexao = $this->abrirConexao();
-
         try {
-            $sql = "SELECT ID, LOGIN, CPF FROM USUARIOS WHERE LOGIN = :login";
+            $sql = "SELECT ID, LOGIN FROM USUARIOS WHERE LOGIN = :login";
 
-            $preparedSql = $conexao->prepare($sql);
+            $preparedSql = $this->dbConnection->prepare($sql);
+            echo "#3<br>";
             $preparedSql->bindParam(":login", $login);
 
-            $preparedSql->execute();
+            $sucesso = $preparedSql->execute();
 
-            foreach ($preparedSql as $row) {
-                echo "ID $row[0] --- Login $row[1] --- CPF $row[2]";
+            if ($sucesso) {
+                return $preparedSql->fetch()['ID'];
             }
 
         } catch (PDOException $excecao) {
-            echo 'Erro ao inserir devido a '.$excecao->getMessage();
+            echo "Erro ao consultar usuário por login ".$login." devido a ".$excecao->getMessage()."<br>";
+        }
+    }
+
+    function inserirEnderecoUsuario($usuarioId, $cep, $logradouro, $numero, $bairro, $cidade, $uf) {
+        try {
+            $sql = "INSERT INTO ENDERECOS (USUARIO_ID, CEP, LOGRADOURO, NUMERO, BAIRRO, CIDADE, UF) VALUES (:usuarioId, :cep, :logradouro, :numero, :bairro, :cidade, :uf)";
+
+            $preparedSql = $this->dbConnection->prepare($sql);
+            echo "#4<br>";
+            $preparedSql->bindParam(":usuarioId", $usuarioId);
+            $preparedSql->bindParam(":cep", $cep);
+            $preparedSql->bindParam(":logradouro", $logradouro);
+            $preparedSql->bindParam(":numero", $numero);
+            $preparedSql->bindParam(":bairro", $bairro);
+            $preparedSql->bindParam(":cidade", $cidade);
+            $preparedSql->bindParam(":uf", $uf);
+
+            $result = $preparedSql->execute();
+            if ($result > 0) {
+                echo "$result endereço foi incluído<br>";
+            }
+
+        } catch (PDOException $excecao) {
+
+            echo "Erro ao inserir endereco do usuario $usuarioId devido a ".$excecao->getMessage()."<br>";
         }
     }
 }
+
 
 $servidor = new CadastroController();
 
@@ -70,14 +85,22 @@ $email = $_POST['email'];
 $cpf = $_POST['cpf'];
 $dataNascimento = $_POST['dataNascimento'];
 
+$cep = $_POST['cep'];
+$logradouro = $_POST['logradouro'];
+$numero = $_POST['numero'];
+$bairro = $_POST['bairro'];
+$cidade = $_POST['cidade'];
+$uf = $_POST['uf'];
+
 if ($login && $email && $cpf && $dataNascimento) {
 
     try {
-        $servidor->inserir($login, $email, $cpf, $dataNascimento);
-        $servidor->getUsuarioCadastrado($login);
+        $servidor->inserirUsuario($login, $email, $cpf, $dataNascimento);
+        $novoUsuarioId = $servidor->getUsuarioCadastrado($login);
+        $servidor->inserirEnderecoUsuario($novoUsuarioId, $cep, $logradouro, $numero, $bairro, $cidade, $uf);
     }
     catch(PDOException $e) {
-        echo "<h1>Erro ao inserir--- </h1>".$e->getMessage();
+        echo "<h1>Erro Catastrófico --- </h1>".$e->getMessage();
     }
 }
 

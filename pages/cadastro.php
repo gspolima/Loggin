@@ -87,10 +87,10 @@
 
                         <div class="uk-margin">
                             <div>
-                                <label for="endereco">Endereço</label>
+                                <label for="logradouro">Endereço</label>
                             </div>
                             <div class="uk-inline">
-                                <input class="uk-input" type="text" id="endereco" name="endereco">
+                                <input class="uk-input" type="text" id="logradouro" name="logradouro">
                             </div>
                             <div class="validacao">
                                 <small id="erroEndereco"></small>
@@ -126,7 +126,7 @@
                                 <label for="cidade">Cidade</label>
                             </div>
                             <div class="uk-inline">
-                                <input readonly disabled class="uk-input" type="text" id="cidade" name="cidade">
+                                <input class="uk-input" type="text" id="cidade" name="cidade" readonly>
                             </div>
                             <div class="validacao">
                                 <small id="erroCidade"></small>
@@ -138,7 +138,7 @@
                                 <label for="uf">UF</label>
                             </div>
                             <div class="uk-inline">
-                                <input readonly disabled class="uk-input" type="text" id="uf" name="uf">
+                                <input class="uk-input" type="text" id="uf" name="uf" readonly>
                             </div>
                             <div class="validacao">
                                 <small id="erroUF"></small>
