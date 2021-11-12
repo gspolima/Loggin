@@ -52,7 +52,7 @@
 
                 <div class="uk-grid-match uk-child-width-1-3@m" uk-grid>
                     <div>
-                        <p>Aqui você pode inserir, editar, remover e visualizar usuários cadastrados.</p>
+                        <p>Aqui você pode cadastrar, editar, remover e visualizar usuários cadastrados.</p>
                     </div>
                     <div>
                         <p>Utilize o menu USUÁRIOS na barra superior para utilizar as operações disponíveis.</p>
