@@ -75,7 +75,7 @@ class CadastroController extends DbContext {
 }
 
 
-$servidor = new CadastroController();
+$controller = new CadastroController();
 
 $login = $_POST['login'];
 $email = $_POST['email'];
@@ -92,9 +92,9 @@ $uf = $_POST['uf'];
 if ($login && $email && $cpf && $dataNascimento) {
 
     try {
-        $servidor->inserirUsuario($login, $email, $cpf, $dataNascimento);
-        $novoUsuarioId = $servidor->getUsuarioCadastrado($login);
-        $servidor->inserirEnderecoUsuario($novoUsuarioId, $cep, $logradouro, $numero, $bairro, $cidade, $uf);
+        $controller->inserirUsuario($login, $email, $cpf, $dataNascimento);
+        $novoUsuarioId = $controller->getUsuarioCadastrado($login);
+        $controller->inserirEnderecoUsuario($novoUsuarioId, $cep, $logradouro, $numero, $bairro, $cidade, $uf);
     }
     catch(PDOException $e) {
         echo "<h1>Erro Catastrófico --- </h1>".$e->getMessage();

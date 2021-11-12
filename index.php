@@ -34,6 +34,14 @@
                     </li>
                 </ul>
             </div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                        <li>
+                            <a style="color: white;" class="uk-navbar-item uk-label uk-label" target="_blank" href="https://www.php.net/releases/8.0/en.php">PHP <?php echo PHP_VERSION ?></a>
+                        </li>
+                    </ul>
+            </div>
+            
         </nav>
     </header>
     <section>
