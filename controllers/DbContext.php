@@ -1,24 +1,39 @@
 <?php
 
 class DbContext {
-    private $options = array(
-        PDO::MYSQL_ATTR_SSL_CA => '../certificates/DigiCertGlobalRootCA.crt.pem'
-    );
 
-    private $dns = 'mysql:host=phpcrudestacio.mysql.database.azure.com;port=3306;dbname=loggin';
-    private $usuario='gustavo';
-    private $senha='Minixbetterthanminix00$';
-
+    
     public function abrirConexao() {
+        $dsn = '';
+        $usuario = '';
+        $senha = '';
+
+        $envirVar = getenv();
+
+        foreach ($envirVar as $key => $value) {
+            if ($key === 'LOGGIN_DSN') {
+                $dsn = $value;
+            }
+            else if ($key === 'LOGGIN_USERNAME') {
+                $usuario = $value;
+            }
+            else if ($key === 'LOGGIN_PASSWORD') {
+                $senha = $value;
+            }
+        }
+
+        $options = array(
+            PDO::MYSQL_ATTR_SSL_CA => '../certificates/DigiCertGlobalRootCA.crt.pem'
+        );
 
         try {
-            $conexao= new PDO($this->dns,$this->usuario,$this->senha, $this->options);
+            $conexao= new PDO($dsn, $usuario, $senha, $options);
             $conexao->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            echo "#1 Conexão realizada com sucesso!<br>";
+            echo "[Conexão realizada com sucesso!]<br>";
             return $conexao;
 
         } catch(PDOException $e) {
-            echo "Falha na conexão ==> ".$e->getMessage();
+            echo "Falha na conexão ------- ".$e->getMessage();
         }
     }
 }
