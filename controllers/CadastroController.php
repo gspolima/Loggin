@@ -15,13 +15,13 @@ class CadastroController extends DbContext {
         try {
             $sql = "INSERT INTO USUARIOS (LOGIN, EMAIL, CPF, DATA_NASCIMENTO) VALUES (:login, :email, :cpf, :dataNascimento)";
 
-            $preparedSql = $this->dbConnection->prepare($sql);
-            $preparedSql->bindParam(":login", $login);
-            $preparedSql->bindParam(":email", $email);
-            $preparedSql->bindParam(":cpf", $cpf);
-            $preparedSql->bindParam(":dataNascimento", $dataNascimento);
+            $queryPreparada = $this->dbConnection->prepare($sql);
+            $queryPreparada->bindParam(":login", $login);
+            $queryPreparada->bindParam(":email", $email);
+            $queryPreparada->bindParam(":cpf", $cpf);
+            $queryPreparada->bindParam(":dataNascimento", $dataNascimento);
 
-            $result = $preparedSql->execute();
+            $result = $queryPreparada->execute();
             if ($result > 0) {
                 echo "$result usuário foi incluso<br>";
             }
@@ -33,15 +33,15 @@ class CadastroController extends DbContext {
 
     function getUsuarioCadastrado($login) {
         try {
-            $sql = "SELECT ID, LOGIN FROM USUARIOS WHERE LOGIN = :login";
+            $sql = "SELECT ID, LOGIN FROM USUARIOS WHERE LOGIN = :login LIMIT 1";
 
-            $preparedSql = $this->dbConnection->prepare($sql);
-            $preparedSql->bindParam(":login", $login);
+            $queryPreparada = $this->dbConnection->prepare($sql);
+            $queryPreparada->bindParam(":login", $login);
 
-            $sucesso = $preparedSql->execute();
+            $sucesso = $queryPreparada->execute();
 
             if ($sucesso) {
-                return $preparedSql->fetch()['ID'];
+                return $queryPreparada->fetch()['ID'];
             }
 
         } catch (PDOException $excecao) {
@@ -53,16 +53,16 @@ class CadastroController extends DbContext {
         try {
             $sql = "INSERT INTO ENDERECOS (USUARIO_ID, CEP, LOGRADOURO, NUMERO, BAIRRO, CIDADE, UF) VALUES (:usuarioId, :cep, :logradouro, :numero, :bairro, :cidade, :uf)";
 
-            $preparedSql = $this->dbConnection->prepare($sql);
-            $preparedSql->bindParam(":usuarioId", $usuarioId);
-            $preparedSql->bindParam(":cep", $cep);
-            $preparedSql->bindParam(":logradouro", $logradouro);
-            $preparedSql->bindParam(":numero", $numero);
-            $preparedSql->bindParam(":bairro", $bairro);
-            $preparedSql->bindParam(":cidade", $cidade);
-            $preparedSql->bindParam(":uf", $uf);
+            $queryPreparada = $this->dbConnection->prepare($sql);
+            $queryPreparada->bindParam(":usuarioId", $usuarioId);
+            $queryPreparada->bindParam(":cep", $cep);
+            $queryPreparada->bindParam(":logradouro", $logradouro);
+            $queryPreparada->bindParam(":numero", $numero);
+            $queryPreparada->bindParam(":bairro", $bairro);
+            $queryPreparada->bindParam(":cidade", $cidade);
+            $queryPreparada->bindParam(":uf", $uf);
 
-            $result = $preparedSql->execute();
+            $result = $queryPreparada->execute();
             if ($result > 0) {
                 echo "$result endereço foi incluído<br>";
             }

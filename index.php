@@ -15,7 +15,7 @@
     <title>Loggin</title>
 </head>
 <body onload="UIkit.notification({message: document.getElementById('phpversion').innerHTML, status: 'success', pos: 'bottom-left', timeout: 2500})">
-    <div id="phpversion" hidden><a class="uk-text-large uk-text-bold uk-text-success" target="_blank" href="https://www.php.net/releases/8.0/en.php"><span uk-icon="server"></span>  <?php echo 'PHP '.PHP_VERSION ?></a></div>
+    <div id="phpversion" hidden><a class="uk-text-large uk-text-success" target="_blank" href="https://www.php.net/releases/8.0/en.php"><span uk-icon="server"></span>  <?php echo 'PHP '.PHP_VERSION ?></a></div>
     <header class="uk-text-bold">
         <nav class="uk-navbar-container" uk-navbar>
             <a class="uk-navbar-item uk-logo" href="./index.php">Loggin</a>
@@ -26,7 +26,7 @@
                         <a href="#">Usuários</a>
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li><a href="./pages/"><span uk-icon="icon: search"></span>Consultar</a></li>
+                                <li><a href="./pages/consulta.php"><span uk-icon="icon: search"></span>Consultar</a></li>
                                 <li><a href="./pages/cadastro.php"><span uk-icon="icon: plus"></span>Cadastrar</a></li>
                             </ul>
                         </div>

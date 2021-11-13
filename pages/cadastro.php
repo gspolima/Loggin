@@ -10,8 +10,8 @@
 <body>
     <?php include '../composers/navbar.php'; ?>
     <section>
-        <div class="uk-section uk-section-default">
-            <div class="uk-container">
+        <div class="uk-section uk-section-small">
+            <div class="uk-container uk-container-expand">
 
                 <h1><span uk-icon="icon: file-text; ratio: 1.5"></span> &nbsp Cadastro</h1>
                 <form action="../controllers/CadastroController.php" method="POST">

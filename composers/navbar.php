@@ -11,8 +11,8 @@ echo
                     <a href="#">Usuários</a>
                     <div class="uk-navbar-dropdown">
                         <ul class="uk-nav uk-navbar-dropdown-nav">
-                            <li><a href="./pages/"><span uk-icon="icon: search"></span>Consultar</a></li>
-                            <li><a href="./pages/cadastro.php"><span uk-icon="icon: plus"></span>Cadastrar</a></li>
+                            <li><a href="./consulta.php"><span uk-icon="icon: search"></span>Consultar</a></li>
+                            <li><a href="./cadastro.php"><span uk-icon="icon: plus"></span>Cadastrar</a></li>
                         </ul>
                     </div>
                 </li>

@@ -4,23 +4,12 @@ class DbContext {
 
     
     public function abrirConexao() {
-        $dsn = '';
-        $usuario = '';
-        $senha = '';
 
-        $envirVar = getenv();
-
-        foreach ($envirVar as $key => $value) {
-            if ($key === 'LOGGIN_DSN') {
-                $dsn = $value;
-            }
-            else if ($key === 'LOGGIN_USERNAME') {
-                $usuario = $value;
-            }
-            else if ($key === 'LOGGIN_PASSWORD') {
-                $senha = $value;
-            }
-        }
+        // Puxar dados de conexão com MySQL que ficam
+        // armazenados em variáveis de ambiente.
+        $dsn = getenv('MYSQL_LOGGIN_DSN');
+        $usuario = getenv('MYSQL_LOGGIN_USERNAME');
+        $senha = getenv('MYSQL_LOGGIN_PASSWORD');
 
         $options = array(
             PDO::MYSQL_ATTR_SSL_CA => '../certificates/DigiCertGlobalRootCA.crt.pem'
@@ -28,12 +17,13 @@ class DbContext {
 
         try {
             $conexao= new PDO($dsn, $usuario, $senha, $options);
+            $conexao->setAttribute( PDO::ATTR_EMULATE_PREPARES, false);
             $conexao->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            echo "[Conexão realizada com sucesso!]<br>";
+            echo "<strong>🆗 [Conexão realizada com sucesso]</strong><br>";
             return $conexao;
 
         } catch(PDOException $e) {
-            echo "Falha na conexão ------- ".$e->getMessage();
+            echo "Falha na conexão ---- ".$e->getMessage();
         }
     }
 }
