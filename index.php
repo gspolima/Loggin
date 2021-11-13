@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./styles.css" />
     <title>Loggin</title>
 </head>
-<body onload="UIkit.notification({message: document.getElementById('phpversion').innerHTML, status: 'success', pos: 'bottom-left', timeout: 4000})">
+<body onload="UIkit.notification({message: document.getElementById('phpversion').innerHTML, status: 'success', pos: 'bottom-left', timeout: 2500})">
     <div id="phpversion" hidden><a class="uk-text-large uk-text-bold uk-text-success" target="_blank" href="https://www.php.net/releases/8.0/en.php"><span uk-icon="server"></span>  <?php echo 'PHP '.PHP_VERSION ?></a></div>
     <header class="uk-text-bold">
         <nav class="uk-navbar-container" uk-navbar>
