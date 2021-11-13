@@ -156,7 +156,7 @@
             </div>
         </div>
     </section>
-    <script type="text/javascript" src="../dependencies/jquery/jquery-3.6.0.min.js"></script>
+    <?php include '../composers/scripts.php'?>
     <script type="text/javascript" src="../js/validarLogin.js"></script>
     <script type="text/javascript" src="../js/validarEmail.js"></script>
     <script type="text/javascript" src="../js/validarCPF.js"></script>

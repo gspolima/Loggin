@@ -14,34 +14,25 @@
     <link rel="stylesheet" href="./styles.css" />
     <title>Loggin</title>
 </head>
-<body>
-    <header>
+<body onload="UIkit.notification({message: document.getElementById('phpversion').innerHTML, status: 'success', pos: 'bottom-left', timeout: 4000})">
+    <div id="phpversion" hidden><a class="uk-text-large uk-text-bold uk-text-success" target="_blank" href="https://www.php.net/releases/8.0/en.php"><span uk-icon="server"></span>  <?php echo 'PHP '.PHP_VERSION ?></a></div>
+    <header class="uk-text-bold">
         <nav class="uk-navbar-container" uk-navbar>
+            <a class="uk-navbar-item uk-logo" href="./index.php">Loggin</a>
             <div class="uk-navbar-left">
 
-                <a class="uk-navbar-item uk-logo" href="./index.php">Loggin</a>
                 <ul class="uk-navbar-nav">
                     <li>
                         <a href="#">Usuários</a>
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li><a href="#">Consultar</a></li>
-                                <li><a href="./pages/cadastro.php">Cadastrar</a></li>
-                                <li><a href="#">Editar</a></li>
-                                <li><a href="#">Excluir</a></li>
+                                <li><a href="./pages/"><span uk-icon="icon: search"></span>Consultar</a></li>
+                                <li><a href="./pages/cadastro.php"><span uk-icon="icon: plus"></span>Cadastrar</a></li>
                             </ul>
                         </div>
                     </li>
                 </ul>
             </div>
-            <div class="uk-navbar-right">
-                <ul class="uk-navbar-nav">
-                        <li>
-                            <a style="color: white;" class="uk-navbar-item uk-label uk-label" target="_blank" href="https://www.php.net/releases/8.0/en.php">PHP <?php echo PHP_VERSION ?></a>
-                        </li>
-                    </ul>
-            </div>
-            
         </nav>
     </header>
     <section>
