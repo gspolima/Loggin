@@ -52,18 +52,18 @@ class RemoveController extends DbContext {
     }
 
     function testeRedirect() {
-        $host = $_SERVER['HTTP_HOST'];
-        echo $host;
+        $host = $_SERVER['SERVER_NAME'];
 
-        if ($host === 'localhost')
-            header("Location: /Loggin/pages/cadastro.php", true);
+        if ($host === "localhost") {
+            $destino = "http://".$host."/Loggin/pages/cadastro.php";
+            
+        }
         else {
-            header("Location: /pages/cadastro.php", true, 302);
+            $destino = "https://".$host."/pages/cadastro.php";
+            echo "<script>window.location.href = '$destino'</script>";
         }
     }
 }
-
-$id = $_GET['id'];
 
 $controller = new RemoveController();
 $controller->testeRedirect();
