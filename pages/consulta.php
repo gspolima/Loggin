@@ -18,6 +18,14 @@
             </div>
         </div>
     </section>
+    <!-- This is the modal -->
+    <div id="my-id" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+            <h2 class="uk-modal-title">Deseja mesmo remover?</h2>
+            <button class="uk-button uk-button-danger" type="button">Remover</button>
+            <button class="uk-button uk-button-muted uk-modal-close" type="button">Fechar</button>
+        </div>
+    </div>
     <?php include '../composers/scripts.php'?>
 </body>
 </html>
