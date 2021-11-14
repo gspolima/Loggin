@@ -52,7 +52,7 @@ class RemoveController extends DbContext {
     }
 
     function testeRedirect() {
-        $host = $_SERVER['SERVER_NAME'];
+        $host = $_SERVER['HTTP_HOST'];
 
         if ($host === "localhost") {
             $destino = "http://".$host."/Loggin/pages/cadastro.php";
