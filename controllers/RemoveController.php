@@ -11,8 +11,6 @@ class RemoveController extends DbContext {
         $this->dbConnection = $this->abrirConexao();
     }
 
-    
-
     function removerEnderecoUsuario($usuarioId) {
         $sql = "DELETE FROM ENDERECOS WHERE USUARIO_ID = :usuarioId";
         $queryPreparada = $this->dbConnection->prepare($sql);

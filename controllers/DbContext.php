@@ -30,7 +30,7 @@ class DbContext {
     function usuarioExiste($id) {
 
         $sql = "SELECT ID FROM USUARIOS WHERE ID = :id LIMIT 1";
-        $queryPreparada = $this->dbConnection->prepare($sql);
+        $queryPreparada = $this->abrirConexao()->prepare($sql);
         $queryPreparada->bindParam(':id', $id);
 
         $sucesso = $queryPreparada->execute();
