@@ -13,8 +13,8 @@
         <div class="uk-section uk-section-small">
             <div class="uk-container uk-container-expand">
 
-                <h1><span uk-icon="icon: plus-circle; ratio: 1.5"></span>&nbspCadastro</h1>
-                <form class="uk-form-stacked" action="../controllers/CadastroController.php" method="POST">
+                <h1><span uk-icon="icon: file-edit; ratio: 1.5"></span>&nbspEdição</h1>
+                <form class="uk-form-stacked" action="../controllers/EdicaoController.php" method="POST">
 
                     <fieldset class="uk-fieldset">
                         <legend class="uk-legend">Dados Pessoais</legend>
@@ -131,7 +131,7 @@
                         </div>
 
                     </fieldset>
-                    <input autofocus class="uk-button uk-button-primary" type="submit" name="salvar" value="Cadastrar">
+                    <input autofocus class="uk-button uk-button-primary" type="submit" name="salvar" value="Salvar Alterações">
                 </form>
             </div>
         </div>

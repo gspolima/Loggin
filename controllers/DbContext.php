@@ -26,6 +26,21 @@ class DbContext {
             echo "Falha na conexão ---- ".$e->getMessage();
         }
     }
+
+    function usuarioExiste($id) {
+
+        $sql = "SELECT ID FROM USUARIOS WHERE ID = :id LIMIT 1";
+        $queryPreparada = $this->dbConnection->prepare($sql);
+        $queryPreparada->bindParam(':id', $id);
+
+        $sucesso = $queryPreparada->execute();
+        $resultado = $queryPreparada->fetchAll();
+
+        if($sucesso && (count($resultado) == 1))
+            return true;
+
+        return false;
+    }
 }
 
 ?>

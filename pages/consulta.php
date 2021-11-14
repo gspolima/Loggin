@@ -12,7 +12,7 @@
     <section>
         <div class="uk-section uk-section-small">
             <div class="uk-container uk-container-expand">
-                <h1><span uk-icon="icon: search; ratio: 1.5"></span> &nbsp Consulta</h1>
+                <h1><span uk-icon="icon: search; ratio: 1.5"></span>&nbspConsulta</h1>
                 <?php 
                     include '../controllers/ListagemController.php';
                 ?>

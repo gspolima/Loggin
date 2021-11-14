@@ -11,20 +11,7 @@ class RemoveController extends DbContext {
         $this->dbConnection = $this->abrirConexao();
     }
 
-    function usuarioExiste($id) {
-        
-        $sql = "SELECT ID FROM USUARIOS WHERE ID = :id LIMIT 1";
-        $queryPreparada = $this->dbConnection->prepare($sql);
-        $queryPreparada->bindParam(':id', $id);
-
-        $sucesso = $queryPreparada->execute();
-        $resultado = $queryPreparada->fetchAll();
-
-        if($sucesso && (count($resultado) == 1))
-            return true;
-
-        return false;
-    }
+    
 
     function removerEnderecoUsuario($usuarioId) {
         $sql = "DELETE FROM ENDERECOS WHERE USUARIO_ID = :usuarioId";
