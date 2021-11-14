@@ -8,3 +8,7 @@ body {
     font-size: 1.6em;
     font-weight: normal;
 }
+
+span {
+    pointer-events: none;
+}

@@ -23,7 +23,7 @@ class CadastroController extends DbContext {
 
             $result = $queryPreparada->execute();
             if ($result > 0) {
-                echo "$result usuário foi incluso<br>";
+                echo "<script>console.log('$result usuário foi incluso');</script>";
             }
 
         } catch (PDOException $excecao) {
@@ -64,12 +64,25 @@ class CadastroController extends DbContext {
 
             $result = $queryPreparada->execute();
             if ($result > 0) {
-                echo "$result endereço foi incluído<br>";
+                echo "<script>console.log('$result endereço foi incluído');</script>";
             }
 
         } catch (PDOException $excecao) {
 
             echo "Erro ao inserir endereco do usuario $usuarioId devido a ".$excecao->getMessage()."<br>";
+        }
+    }
+
+    function redirecionarParaConsulta() {
+        $host = $_SERVER['HTTP_HOST'];
+
+        if ($host === "localhost") {
+            $destino = "http://".$host."/Loggin/pages/consulta.php";
+            echo "<script>window.location.href = '$destino'</script>";
+        }
+        else {
+            $destino = "https://".$host."/pages/consulta.php";
+            echo "<script>window.location.href = '$destino'</script>";
         }
     }
 }
@@ -95,6 +108,7 @@ if ($login && $email && $cpf && $dataNascimento) {
         $controller->inserirUsuario($login, $email, $cpf, $dataNascimento);
         $novoUsuarioId = $controller->getUsuarioCadastrado($login);
         $controller->inserirEnderecoUsuario($novoUsuarioId, $cep, $logradouro, $numero, $bairro, $cidade, $uf);
+        $controller->redirecionarParaConsulta();
     }
     catch(PDOException $e) {
         echo "<h1>Erro Catastrófico --- </h1>".$e->getMessage();

@@ -39,8 +39,6 @@ class RemoveController extends DbContext {
 
     function removerUsuario($id) {
 
-        $this->removerEnderecoUsuario($id);
-
         $sql = "DELETE FROM USUARIOS WHERE ID = :id";
         $queryPreparada = $this->dbConnection->prepare($sql);
         $queryPreparada->bindParam(':id', $id);
@@ -65,13 +63,14 @@ class RemoveController extends DbContext {
     }
 }
 
+$id = $_GET['id'];
+
 $controller = new RemoveController();
-$controller->redirecionarParaConsulta();
 
 $existe = $controller->usuarioExiste($id);
 
-if ($existe) {
+if ($existe === true) {
+    $controller->removerEnderecoUsuario($id);
     $controller->removerUsuario($id);
-    $controller->redirecionarParaConsulta();
 }
 ?>

@@ -70,7 +70,7 @@ class ListagemController extends DbContext {
                             <td class='uk-table-shrink'>".$linha['CIDADE']."</td>
                             <td class='uk-table-shrink'>".$linha['UF']."</td>
                             <td class='uk-table-shrink uk-text-nowrap'><a class='uk-text-primary' href='#'><span uk-icon='icon: pencil; ratio: 1.4'></span></a></td>
-                            <td class='uk-table-shrink uk-text-nowrap'><a uk-toggle href='#my-id' class='uk-text-danger'><span uk-icon='icon: trash; ratio: 1.4'></span></a></td>
+                            <td class='uk-table-shrink uk-text-nowrap'><a data-usuario-id=".$linha['ID']." uk-toggle href='#removerModal' class='botaoRemover uk-text-danger'><span uk-icon='icon: trash; ratio: 1.4'></span></a></td>
                         </tr>
             ";
         }
