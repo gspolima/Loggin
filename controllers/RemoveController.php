@@ -58,7 +58,7 @@ class RemoveController extends DbContext {
         if ($host === 'localhost')
             header("Location: /Loggin/pages/cadastro.php", true);
         else {
-            header("Location: /pages/cadastro.php", true);
+            header("Location: /pages/cadastro.php", true, 302);
         }
     }
 }
