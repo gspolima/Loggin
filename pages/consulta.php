@@ -12,6 +12,7 @@
     <section>
         <div class="uk-section uk-section-small">
             <div class="uk-container uk-container-expand">
+                <h1><span uk-icon="icon: search; ratio: 1.5"></span> &nbsp Consulta</h1>
                 <?php 
                     include '../controllers/ListagemController.php';
                 ?>
@@ -23,10 +24,10 @@
         <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
             <h2 class="uk-modal-title">Deseja mesmo remover?</h2>
             <button id="botaoConfirmar" class="uk-button uk-button-danger" type="button">Remover</button>
-            <button class="uk-button uk-modal-close" type="button">Fechar</button>
+            <button class="uk-button uk-modal-close" type="button">Voltar</button>
         </div>
     </div>
     <?php include '../composers/scripts.php'?>
-    <script src="../js/removerUsuario.js"></script>
+    <script src="../js/consulta.js"></script>
 </body>
 </html>

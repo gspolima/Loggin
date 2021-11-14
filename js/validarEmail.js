@@ -1,5 +1,9 @@
 function validarEmail(valor) {
 
+    let tamanho = String(valor).length;
+    if (tamanho >= 70)
+        return 'Email deve ter no máximo 70 caracteres';
+
 	usuario = valor.substring(0, valor.indexOf("@"));
     dominio = valor.substring(valor.indexOf("@") + 1, valor.length);
 
@@ -12,23 +16,20 @@ function validarEmail(valor) {
             (dominio.search(".") != -1) &&
             (dominio.indexOf(".") >= 1) &&
             (dominio.lastIndexOf(".") < dominio.length - 1)) {
-        
+
         return true;
-        //alert("email valido");
-        //document.getElementById("msgemail").value = '';
     } else {
-        // alert("E-mail invalido");
-        // document.getElementById("email").value = '';
-        return false
+        return 'Email em formato inválido';
     }
 }
 
 function validarCampoEmail(valor) {
     $(function () {
         const $campoErro = $('#erroEmail');
+        const retorno = validarEmail(valor);
 
-        if(validarEmail(valor) === false) {
-            $campoErro.addClass('uk-text-danger').text('Email Inválido');
+        if(retorno !== true) {
+            $campoErro.addClass('uk-text-danger').text(retorno);
         }
         else {
             $campoErro.removeClass('uk-text-danger').text('');

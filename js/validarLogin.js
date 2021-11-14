@@ -6,6 +6,9 @@ function validarLogin(valor) {
     if (tamanho < 4)
         return 'Login deve ter pelo menos 4 caracteres';
 
+    if (tamanho >= 70)
+        return 'Login deve ter no máximo 70 caracteres';
+
     return true;
 }
 

@@ -13,42 +13,37 @@
         <div class="uk-section uk-section-small">
             <div class="uk-container uk-container-expand">
 
-                <h1><span uk-icon="icon: file-text; ratio: 1.5"></span> &nbsp Cadastro</h1>
-                <form action="../controllers/CadastroController.php" method="POST">
+                <h1><span uk-icon="icon: plus-circle; ratio: 1.5"></span> &nbsp Cadastro</h1>
+                <form class="uk-form-stacked" action="../controllers/CadastroController.php" method="POST">
 
                     <fieldset class="uk-fieldset">
                         <legend class="uk-legend">Dados Pessoais</legend>
+                        <hr/>
 
-                        <div class="uk-margin">
-                            <div>
-                                <label class="uk-label" for="cpf">Login</label>
-                            </div>
+                        <div class="uk-margin-medium-bottom uk-width-1-2">
+                            <label class="uk-form-label" for="login">Login</label>
                             <div class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input autofocus class="uk-input" type="text" id="login" name="login" placeholder="professor.ildo" onblur="validarCampoLogin(this.value)">
+                                <input autofocus class="uk-input uk-width-medium" type="text" id="login" name="login" placeholder="professor.ildo" onblur="validarCampoLogin(this.value)">
                             </div>
                             <div class="validacao">
                                 <small id="erroLogin"></small>
                             </div>
                         </div>
 
-                        <div class="uk-margin">
-                            <div>
-                                <label class="uk-label" for="email">Email</label>
-                            </div>
+                        <div class="uk-margin-medium-bottom">
+                            <label class="uk-form-label" for="email">Email</label>
                             <div class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                <input class="uk-input" type="email" id="email" name="email" onblur="validarCampoEmail(this.value)">
+                                <input class="uk-input uk-width-large" type="email" id="email" name="email" onblur="validarCampoEmail(this.value)">
                             </div>
                             <div class="validacao">
                                 <small id="erroEmail"></small>
                             </div>
                         </div>
 
-                        <div class="uk-margin">
-                            <div>
-                                <label class="uk-label" for="cpf">CPF</label>
-                            </div>
+                        <div class="uk-margin-medium-bottom">
+                            <label class="uk-form-label" for="cpf">CPF</label>
                             <div class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: link"></span>
                                 <input class="uk-input" type="text" id="cpf" name="cpf" onblur="validarCampoCPF(this.value)">
@@ -58,13 +53,11 @@
                             </div>
                         </div>
 
-                        <div class="uk-margin">
-                            <div>
-                                <label class="uk-label" for="cpf">Data de Nascimento</label>
-                            </div>
+                        <div class="uk-margin-medium-bottom">
+                            <label class="uk-form-label" for="cpf">Data de Nascimento</label>
                             <div class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: calendar"></span>
-                                <input class="uk-input" type="date" id="dataNascimento" name="dataNascimento" onblur="validarCampoDataNascimento()">
+                                <input class="uk-input uk-width-medium" type="date" id="dataNascimento" name="dataNascimento" onblur="validarCampoDataNascimento()">
                             </div>
                             <div class="validacao">
                                 <small id="erroDataNascimento"></small>
@@ -72,78 +65,65 @@
                         </div>
                     </fieldset>
 
-                    <hr class="uk-divider-icon">
-
                     <fieldset class="uk-fieldset">
                         <legend class="uk-legend">Endereço</legend>
+                        <hr/>
 
-                        <div class="uk-margin">
-                            <div>
-                                <label class="uk-label" for="cep">CEP</label>
-                            </div>
+                        <div class="uk-margin-medium-bottom">
+                            <label class="uk-form-label" for="cep">CEP</label>
                             <div class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: location"></span>
-                                <input class="uk-input" type="numeric" id="cep" name="cep" onblur="validarCampoCEP(this.value)">
+                                <input class="uk-input uk-width-small" type="numeric" id="cep" name="cep" onblur="validarCampoCEP(this.value)">
                             </div>
                             <div class="validacao">
                                 <small id="erroCEP"></small>
                             </div>
                         </div>
 
-                        <div class="uk-margin">
-                            <div>
-                                <label class="uk-label" for="logradouro">Endereço</label>
-                            </div>
+                        <div class="uk-margin-medium-bottom">
+                            <label class="uk-form-label" for="logradouro">Endereço</label>
                             <div class="uk-inline">
-                                <input class="uk-input" type="text" id="logradouro" name="logradouro" onblur="validarCampoLogradouro(this.value)">
+                                <input class="uk-input uk-width-medium" type="text" id="logradouro" name="logradouro" onblur="validarCampoLogradouro(this.value)">
                             </div>
                             <div class="validacao">
                                 <small id="erroLogradouro"></small>
                             </div>
                         </div>
 
-                        <div class="uk-margin">
-                            <div>
-                                <label class="uk-label" for="numero">Número</label>
-                            </div>
+                        <div class="uk-margin-medium-bottom">
+                            <label class="uk-form-label" for="numero">Número</label>
                             <div class="uk-inline">
-                                <input class="uk-input" type="numeric" id="numero" name="numero" onblur="validarCampoNumero(this.value)">
+                                <input class="uk-input uk-width-small" type="numeric" id="numero" name="numero" onblur="validarCampoNumero(this.value)">
                             </div>
                             <div class="validacao">
                                 <small id="erroNumero"></small>
                             </div>
                         </div>
 
-                        <div class="uk-margin">
-                            <div>
-                                <label class="uk-label" for="bairro">Bairro</label>
-                            </div>
+                        <div class="uk-margin-medium-bottom">
+                            <label class="uk-form-label" for="bairro">Bairro</label>
                             <div class="uk-inline">
-                                <input class="uk-input" type="text" id="bairro" name="bairro" onblur="validarCampoBairro(this.value)">
+                                <input class="uk-input uk-width-medium" type="text" id="bairro" name="bairro" onblur="validarCampoBairro(this.value)">
                             </div>
                             <div class="validacao">
                                 <small id="erroBairro"></small>
                             </div>
                         </div>
 
-                        <div class="uk-margin">
-                            <div>
-                                <label class="uk-label" for="cidade">Cidade</label>
-                            </div>
+                        <div class="uk-margin-medium-bottom">
+                            <label class="uk-form-label" for="cidade">Cidade</label>
                             <div class="uk-inline">
-                                <input class="uk-input" type="text" id="cidade" name="cidade" readonly>
+                                <input class="uk-input uk-width-medium" type="text" id="cidade" name="cidade" readonly>
                             </div>
                             <div class="validacao">
                                 <small id="erroCidade"></small>
                             </div>
                         </div>
 
-                        <div class="uk-margin">
-                            <div>
-                                <label class="uk-label" for="uf">UF</label>
-                            </div>
+                        <div class="uk-margin-medium-bottom">
+                            <label class="uk-form-label" for="uf">UF</label>
                             <div class="uk-inline">
-                                <input class="uk-input" type="text" id="uf" name="uf" readonly>
+                                <input class="uk-input uk-width-small" type="text" id="uf" name="uf" readonly>
                             </div>
                             <div class="validacao">
                                 <small id="erroUF"></small>

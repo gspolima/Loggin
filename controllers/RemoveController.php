@@ -53,11 +53,11 @@ class RemoveController extends DbContext {
         $host = $_SERVER['HTTP_HOST'];
 
         if ($host === "localhost") {
-            $destino = "http://".$host."/Loggin/pages/cadastro.php";
+            $destino = "http://".$host."/Loggin/pages/consulta.php?del=1";
             echo "<script>window.location.href = '$destino'</script>";
         }
         else {
-            $destino = "https://".$host."/pages/cadastro.php";
+            $destino = "https://".$host."/pages/consulta.php?del=1";
             echo "<script>window.location.href = '$destino'</script>";
         }
     }
@@ -66,11 +66,11 @@ class RemoveController extends DbContext {
 $id = $_GET['id'];
 
 $controller = new RemoveController();
-
 $existe = $controller->usuarioExiste($id);
 
 if ($existe === true) {
     $controller->removerEnderecoUsuario($id);
     $controller->removerUsuario($id);
+    $controller->redirecionarParaConsulta();
 }
 ?>

@@ -4,7 +4,10 @@ function validarLogradouro(valor) {
 
     let tamanho = valor.length;
     if (tamanho < 5)
-        return 'Logradouro deve ter pelo menos 5 caracteres';
+        return 'Endereço deve ter pelo menos 5 caracteres';
+
+    if (tamanho >= 40)
+        return 'Endereço deve ter no máximo 40 caracteres';
 
     return true;
 }

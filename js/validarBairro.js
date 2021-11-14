@@ -6,6 +6,9 @@ function validarBairro(valor) {
     if (tamanho < 2)
         return 'Bairro deve ter pelo menos 2 caracteres';
 
+    if (tamanho >= 40)
+        return 'Bairro deve ter no máximo 40 caracteres';
+
     return true;
 }
 

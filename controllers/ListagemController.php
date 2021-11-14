@@ -96,9 +96,8 @@ function formatarCpf($doc) {
 
         return $docFormatado;
     }
-    return 'doc invalido';   
+    return 'doc invalido';
 }
-
 
 $controller = new ListagemController();
 $usuarios = $controller->getListaDeUsuarios();
