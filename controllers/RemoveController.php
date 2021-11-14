@@ -50,13 +50,25 @@ class RemoveController extends DbContext {
         if ($sucesso)
             echo "Usuário ID $id removido com sucesso<br>";
     }
+
+    function testeRedirect() {
+        $host = $_SERVER['HTTP_HOST'];
+        echo $host;
+
+        if ($host === 'localhost')
+            header("Location: /Loggin/pages/cadastro.php", true);
+        else {
+            header("Location: /pages/cadastro.php", true);
+        }
+    }
 }
 
 $id = $_GET['id'];
 
 $controller = new RemoveController();
-$existe = $controller->usuarioExiste($id);
+$controller->testeRedirect();
+// $existe = $controller->usuarioExiste($id);
 
-if ($existe)
-    $controller->removerUsuario($id);
+// if ($existe)
+//     $controller->removerUsuario($id);
 ?>
