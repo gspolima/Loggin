@@ -4,7 +4,7 @@ include_once './DbContext.php';
 
 class RemoveController extends DbContext {
 
-    private PDO $dbConnection;
+    public PDO $dbConnection;
 
     public function __construct()
     {

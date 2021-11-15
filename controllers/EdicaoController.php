@@ -4,26 +4,30 @@ include_once './DbContext.php';
 
 class EdicaoController extends DbContext {
 
-    private PDO $dbConnection;
+    public PDO $dbConnection;
 
     public function __construct()
     {
         $this->dbConnection = $this->abrirConexao();
     }
 
-    function atualizarUsuario($login, $email, $cpf, $dataNascimento) {
+    function atualizarUsuario($id, $email, $dataNascimento) {
         try {
-            $sql = "INSERT INTO USUARIOS (LOGIN, EMAIL, CPF, DATA_NASCIMENTO) VALUES (:login, :email, :cpf, :dataNascimento)";
+            $sql = 
+            "
+                UPDATE USUARIOS
+                SET EMAIL = :email, DATA_NASCIMENTO = :dataNascimento
+                WHERE ID = :id;
+            ";
 
             $queryPreparada = $this->dbConnection->prepare($sql);
-            $queryPreparada->bindParam(":login", $login);
             $queryPreparada->bindParam(":email", $email);
-            $queryPreparada->bindParam(":cpf", $cpf);
             $queryPreparada->bindParam(":dataNascimento", $dataNascimento);
+            $queryPreparada->bindParam(":id", $id);
 
             $result = $queryPreparada->execute();
             if ($result > 0) {
-                echo "<script>console.log('$result usuário foi incluso');</script>";
+                echo "<script>console.log('$result usuário foi ATUALIZADO');</script>";
             }
 
         } catch (PDOException $excecao) {
@@ -33,7 +37,18 @@ class EdicaoController extends DbContext {
 
     function atualizarEnderecoUsuario($usuarioId, $cep, $logradouro, $numero, $bairro, $cidade, $uf) {
         try {
-            $sql = "INSERT INTO ENDERECOS (USUARIO_ID, CEP, LOGRADOURO, NUMERO, BAIRRO, CIDADE, UF) VALUES (:usuarioId, :cep, :logradouro, :numero, :bairro, :cidade, :uf)";
+            $sql = 
+            "
+                UPDATE ENDERECOS
+                SET 
+                    CEP = :cep,
+                    LOGRADOURO = :logradouro,
+                    NUMERO = :numero,
+                    BAIRRO = :bairro,
+                    CIDADE = :cidade,
+                    UF = :uf
+                WHERE USUARIO_ID = :usuarioId;
+            ";
 
             $queryPreparada = $this->dbConnection->prepare($sql);
             $queryPreparada->bindParam(":usuarioId", $usuarioId);
@@ -46,7 +61,7 @@ class EdicaoController extends DbContext {
 
             $result = $queryPreparada->execute();
             if ($result > 0) {
-                echo "<script>console.log('$result endereço foi incluído');</script>";
+                echo "<script>console.log('$result endereço foi ATUALIZADO');</script>";
             }
 
         } catch (PDOException $excecao) {
@@ -69,14 +84,10 @@ class EdicaoController extends DbContext {
     }
 }
 
-
 $controller = new EdicaoController();
 
-
-$usuarioId = $_GET('id');
-$login = $_POST['login'];
+$usuarioId = $_POST['usuarioId'];
 $email = $_POST['email'];
-$cpf = $_POST['cpf'];
 $dataNascimento = $_POST['dataNascimento'];
 
 $cep = $_POST['cep'];
@@ -86,20 +97,17 @@ $bairro = $_POST['bairro'];
 $cidade = $_POST['cidade'];
 $uf = $_POST['uf'];
 
-if ($login && $email && $cpf && $dataNascimento) {
+try {
+    $usuarioExiste = $controller->usuarioExiste($usuarioId);
 
-    try {
-        $usuarioExiste = $controller->usuarioExiste($usuarioExiste);
-
-        if ($usuarioExiste) {
-            $controller->atualizarUsuario($login, $email, $cpf, $dataNascimento);
-            $controller->atualizarEnderecoUsuario($novoUsuarioId, $cep, $logradouro, $numero, $bairro, $cidade, $uf);
-            $controller->redirecionarParaConsulta();
-        }
+    if ($usuarioExiste) {
+        $controller->atualizarUsuario($usuarioId, $email, $dataNascimento);
+        $controller->atualizarEnderecoUsuario($usuarioId, $cep, $logradouro, $numero, $bairro, $cidade, $uf);
+        $controller->redirecionarParaConsulta();
     }
-    catch(PDOException $e) {
-        echo "<h1>Erro Catastrófico --- </h1>".$e->getMessage();
-    }
+}
+catch(PDOException $e) {
+    echo "<h1>Erro Catastrófico --- </h1>".$e->getMessage();
 }
 
 ?>

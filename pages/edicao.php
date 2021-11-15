@@ -20,14 +20,13 @@
                         <legend class="uk-legend">Dados Pessoais</legend>
                         <hr/>
 
-                        <div class="uk-margin-medium-bottom uk-width-1-2">
+                        <input hidden type="text" id="usuarioId" name="usuarioId">
+
+                        <div class="uk-margin-medium-bottom">
                             <label class="uk-form-label" for="login">Login</label>
                             <div class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: user"></span>
-                                <input autofocus class="uk-input uk-width-medium" type="text" id="login" name="login" placeholder="professor.ildo" onblur="validarCampoLogin(this.value)">
-                            </div>
-                            <div class="validacao">
-                                <small id="erroLogin"></small>
+                                <input disabled class="uk-input uk-width-medium" type="text" id="login" name="login">
                             </div>
                         </div>
 
@@ -35,7 +34,7 @@
                             <label class="uk-form-label" for="email">Email</label>
                             <div class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                <input class="uk-input uk-width-large" type="email" id="email" name="email" onblur="validarCampoEmail(this.value)">
+                                <input autofocus class="uk-input uk-width-large" type="email" id="email" name="email" onblur="validarCampoEmail(this.value)">
                             </div>
                             <div class="validacao">
                                 <small id="erroEmail"></small>
@@ -46,7 +45,7 @@
                             <label class="uk-form-label" for="cpf">CPF</label>
                             <div class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: link"></span>
-                                <input class="uk-input" type="text" id="cpf" name="cpf" onblur="validarCampoCPF(this.value)">
+                                <input disabled class="uk-input" type="text" id="cpf" name="cpf" onblur="validarCampoCPF(this.value)">
                             </div>
                             <div class="validacao">
                                 <small id="erroCPF"></small>
@@ -146,5 +145,17 @@
     <script type="text/javascript" src="../js/validarNumero.js"></script>
     <script type="text/javascript" src="../js/validarBairro.js"></script>
     <script type="text/javascript" src="../js/validarFormulario.js"></script>
+    <?php 
+        $usuarioId = $_GET['id'];
+
+        echo 
+        "
+            <script>
+                $('#usuarioId').attr('value', $usuarioId);
+                $('#usuarioId').attr('data-usuario-id', $usuarioId);
+            </script>
+        ";
+    ?>
+    <script src="../js/edicao.js"></script>
 </body>
 </html>

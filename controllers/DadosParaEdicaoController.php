@@ -34,8 +34,8 @@ class DadosParaEdicaoController extends DbContext {
 
     function retornarListaEmJSON($arrayDadosUsuario) {
         header("HTTP/1.1 200 OK");
-        $dadosEmJSON = json_encode($arrayDadosUsuario);
-        echo "<script>console.log($dadosEmJSON)</script>";
+        $dadosEmJSON = json_encode($arrayDadosUsuario[0]);
+        echo $dadosEmJSON;
     }
 }
 

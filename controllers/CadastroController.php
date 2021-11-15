@@ -4,7 +4,7 @@ include_once './DbContext.php';
 
 class CadastroController extends DbContext {
 
-    private PDO $dbConnection;
+    public PDO $dbConnection;
 
     public function __construct()
     {
@@ -13,7 +13,13 @@ class CadastroController extends DbContext {
 
     function inserirUsuario($login, $email, $cpf, $dataNascimento) {
         try {
-            $sql = "INSERT INTO USUARIOS (LOGIN, EMAIL, CPF, DATA_NASCIMENTO) VALUES (:login, :email, :cpf, :dataNascimento)";
+            $sql = 
+            "
+                INSERT INTO USUARIOS
+                    (LOGIN, EMAIL, CPF, DATA_NASCIMENTO)
+                VALUES
+                    (:login, :email, :cpf, :dataNascimento)
+            ";
 
             $queryPreparada = $this->dbConnection->prepare($sql);
             $queryPreparada->bindParam(":login", $login);
@@ -51,7 +57,12 @@ class CadastroController extends DbContext {
 
     function inserirEnderecoUsuario($usuarioId, $cep, $logradouro, $numero, $bairro, $cidade, $uf) {
         try {
-            $sql = "INSERT INTO ENDERECOS (USUARIO_ID, CEP, LOGRADOURO, NUMERO, BAIRRO, CIDADE, UF) VALUES (:usuarioId, :cep, :logradouro, :numero, :bairro, :cidade, :uf)";
+            $sql = 
+                "INSERT INTO ENDERECOS
+                    (USUARIO_ID, CEP, LOGRADOURO, NUMERO, BAIRRO, CIDADE, UF)
+                VALUES
+                    (:usuarioId, :cep, :logradouro, :numero, :bairro, :cidade, :uf)
+                ";
 
             $queryPreparada = $this->dbConnection->prepare($sql);
             $queryPreparada->bindParam(":usuarioId", $usuarioId);

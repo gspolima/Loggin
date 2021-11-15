@@ -4,7 +4,7 @@ include_once '../controllers/DbContext.php';
 
 class ListagemController extends DbContext {
 
-    private PDO $dbConnection;
+    public PDO $dbConnection;
 
     public function __construct()
     {
@@ -56,12 +56,12 @@ class ListagemController extends DbContext {
         foreach ($listaDeUsuarios as $linha) {
             $dataNascimento = DateTime::createFromFormat('Y-m-d', $linha['DATA_NASCIMENTO']);
             $idade = $dataAtual->diff($dataNascimento)->format('%Y');
-
+            $id = $linha['ID'];
             $cpfMascarado = formatarCpf($linha['CPF']);
 
             echo "
                         <tr>
-                            <td class='uk-table-shrink'>".$linha['ID']."</td>
+                            <td class='uk-table-shrink'>".$id."</td>
                             <td class='uk-table-shrink'>".$linha['LOGIN']."</td>
                             <td class='uk-table-shrink'>".$linha['EMAIL']."</td>
                             <td class='uk-table-shrink uk-text-nowrap'>".$cpfMascarado."</td>
@@ -69,7 +69,7 @@ class ListagemController extends DbContext {
                             <td class='uk-table-shrink'>".$linha['LOGRADOURO']." ".$linha['NUMERO']." ".$linha['BAIRRO']."</td>
                             <td class='uk-table-shrink'>".$linha['CIDADE']."</td>
                             <td class='uk-table-shrink'>".$linha['UF']."</td>
-                            <td class='uk-table-shrink uk-text-nowrap'><a class='uk-text-primary' href='#'><span uk-icon='icon: pencil; ratio: 1.4'></span></a></td>
+                            <td class='uk-table-shrink uk-text-nowrap'><a class='uk-text-primary' href='./edicao.php?id=$id'><span uk-icon='icon: pencil; ratio: 1.4'></span></a></td>
                             <td class='uk-table-shrink uk-text-nowrap'><a data-usuario-id=".$linha['ID']." uk-toggle href='#removerModal' class='botaoRemover uk-text-danger'><span uk-icon='icon: trash; ratio: 1.4'></span></a></td>
                         </tr>
             ";
