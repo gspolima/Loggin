@@ -42,8 +42,8 @@ class ListagemController extends DbContext {
                             <th>CPF</th>
                             <th>Idade</th>
                             <th>Endereço</th>
-                            <th>Cidade</th>
-                            <th>UF</th>
+                            <th>Bairro</th>
+                            <th>Cidade/UF</th>
                             <th>Editar</th>
                             <th>Remover</th>
                         </tr>
@@ -57,18 +57,19 @@ class ListagemController extends DbContext {
             $dataNascimento = DateTime::createFromFormat('Y-m-d', $linha['DATA_NASCIMENTO']);
             $idade = $dataAtual->diff($dataNascimento)->format('%Y');
             $id = $linha['ID'];
+            $cidadeEstado = $linha['CIDADE']."/".$linha['UF'];
             $cpfMascarado = formatarCpf($linha['CPF']);
 
             echo "
                         <tr>
                             <td class='uk-table-shrink'>".$id."</td>
                             <td class='uk-table-shrink'>".$linha['LOGIN']."</td>
-                            <td class='uk-table-shrink'>".$linha['EMAIL']."</td>
+                            <td class='uk-table-shrink uk-text-nowrap'>".$linha['EMAIL']."</td>
                             <td class='uk-table-shrink uk-text-nowrap'>".$cpfMascarado."</td>
                             <td class='uk-table-shrink uk-text-nowrap'>".$idade." anos</td>
-                            <td class='uk-table-shrink'>".$linha['LOGRADOURO']." ".$linha['NUMERO']." ".$linha['BAIRRO']."</td>
-                            <td class='uk-table-shrink'>".$linha['CIDADE']."</td>
-                            <td class='uk-table-shrink'>".$linha['UF']."</td>
+                            <td class='uk-table-shrink'>".$linha['LOGRADOURO']." ".$linha['NUMERO']."</td>
+                            <td class='uk-table-shrink'>".$linha['BAIRRO']."</td>
+                            <td class='uk-table-shrink'>".$cidadeEstado."</td>
                             <td class='uk-table-shrink uk-text-nowrap'><a class='uk-text-primary' href='./edicao.php?id=$id'><span uk-icon='icon: pencil; ratio: 1.4'></span></a></td>
                             <td class='uk-table-shrink uk-text-nowrap'><a data-usuario-id=".$linha['ID']." uk-toggle href='#removerModal' class='botaoRemover uk-text-danger'><span uk-icon='icon: trash; ratio: 1.4'></span></a></td>
                         </tr>
