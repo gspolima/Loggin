@@ -13,3 +13,11 @@ body {
 span {
     pointer-events: none;
 }
+
+.uk-navbar-container:not(.uk-navbar-transparent) {
+    background: #ebebeb;
+}
+ 
+.uk-navbar-nav>li>a {
+    color: #727272;
+}
