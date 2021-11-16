@@ -1,5 +1,7 @@
 <?php
 
+use FFI\Exception;
+
 include_once './DbContext.php';
 
 class DadosParaEdicaoController extends DbContext {
@@ -53,8 +55,8 @@ if ($usuarioId) {
             $controller->retornarListaEmJSON($dadosUsuario);
         }
     }
-    catch(PDOException $e) {
-        echo "<h1>Erro Catastrófico --- </h1>".$e->getMessage();
+    catch(Exception $e) {
+        echo "<h1>Erro ao puxar dados para edição --- ".$e->getMessage()."</h1>";
     }
 }
 

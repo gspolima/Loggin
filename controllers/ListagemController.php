@@ -100,8 +100,12 @@ function formatarCpf($doc) {
     return 'doc invalido';
 }
 
-$controller = new ListagemController();
-$usuarios = $controller->getListaDeUsuarios();
-$controller->comporTabelaComDados($usuarios);
+try {
+    $controller = new ListagemController();
+    $usuarios = $controller->getListaDeUsuarios();
+    $controller->comporTabelaComDados($usuarios);
+} catch (PDOException $e) {
+    echo "Erro durante consulta: ".$e->getMessage();
+}
 
 ?>

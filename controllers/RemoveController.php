@@ -50,12 +50,18 @@ class RemoveController extends DbContext {
 
 $id = $_GET['id'];
 
-$controller = new RemoveController();
-$existe = $controller->usuarioExiste($id);
+try {
+    $controller = new RemoveController();
+    $existe = $controller->usuarioExiste($id);
 
-if ($existe === true) {
-    $controller->removerEnderecoUsuario($id);
-    $controller->removerUsuario($id);
-    $controller->redirecionarParaConsulta();
+    if ($existe === true) {
+        $controller->removerEnderecoUsuario($id);
+        $controller->removerUsuario($id);
+        $controller->redirecionarParaConsulta();
+    }
+} catch (PDOException $e) {
+    echo "Erro durante consulta: ".$e->getMessage();
 }
+
+
 ?>

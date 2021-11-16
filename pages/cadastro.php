@@ -35,7 +35,7 @@
                             <label class="uk-form-label" for="email">Email</label>
                             <div class="uk-inline">
                                 <span class="uk-form-icon" uk-icon="icon: mail"></span>
-                                <input class="uk-input uk-width-large" type="email" id="email" name="email" onblur="validarCampoEmail(this.value)">
+                                <input class="uk-input uk-width-medium" type="email" id="email" name="email" onblur="validarCampoEmail(this.value)">
                             </div>
                             <div class="validacao">
                                 <small id="erroEmail"></small>

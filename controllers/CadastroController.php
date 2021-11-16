@@ -122,7 +122,7 @@ if ($login && $email && $cpf && $dataNascimento) {
         $controller->redirecionarParaConsulta();
     }
     catch(PDOException $e) {
-        echo "<h1>Erro Catastrófico --- </h1>".$e->getMessage();
+        echo "<h1>Erro catastrófico ao cadastrar --- ".$e->getMessage()."</h1>";
     }
 }
 
