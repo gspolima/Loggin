@@ -1,7 +1,7 @@
-POR MOTIVOS DE SEGURANÇA, A APLICAÇÃO PEGA AS CREDENCIAIS 
-DO BANCO DE DADOS NA NUVEM (HOST, USUÁRIO E SENHA) 
-A PARTIR DE VARIÁVEIS DE AMBIENTE DO SISTEMA OPERACIONAL. 
-PORTANTO, EXECUTAR A APLICAÇÃO INALTERADA LOCALMENTE NÃO FUNCIONARÁ.
+# Importante
 
-PARA UTILIZAR A APLICAÇÃO E TODAS AS SUAS FUNCIONALIDADES, ACESSE A URL
-https://loggin-php.azurewebsites.net EM QUALQUER NAVEGADOR MODERNO.
+Por motivos de segurança, a aplicação pega as credenciais do banco de dados na nuvem (host, usuário e senha) a partir de variáveis de ambiente do sistema operacional. Portanto, executar a aplicação inalterada localmente não funcionará.
+
+Para utilizar a aplicação e todas as suas funcionalidades, acesse a URL https://loggin-php.azurewebsites.net em qualquer navegador moderno.
+
+Aproveite :)
