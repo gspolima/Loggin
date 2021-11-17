@@ -16,7 +16,7 @@ echo
                         </ul>
                     </div>
                 </li>
-                <li><a href="https://github.com/gspolima/loggin" target="_blank"><span uk-icon="icon: code"></span> Código-fonte</a></li>
+                <li><a href="https://github.com/gspolima/loggin" target="_blank"><span uk-icon="icon: code"></span>Código fonte</a></li>
             </ul>
         </div>
     </nav>
