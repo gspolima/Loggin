@@ -2,6 +2,7 @@ let usuarioId = $('#usuarioId').attr('value');
 console.log(usuarioId);
 let host = window.location.hostname;
 let uriRemover = '';
+console.log(window.location.pathname);
 
 if (host === 'localhost') {
     uriRemover = `/Loggin/controllers/DadosParaEdicaoController.php?id=${usuarioId}`;

@@ -136,9 +136,7 @@
         </div>
     </section>
     <?php include '../composers/scripts.php'?>
-    <script type="text/javascript" src="../js/validarLogin.js"></script>
     <script type="text/javascript" src="../js/validarEmail.js"></script>
-    <script type="text/javascript" src="../js/validarCPF.js"></script>
     <script type="text/javascript" src="../js/validarDataNascimento.js"></script>
     <script type="text/javascript" src="../js/validarCEP.js"></script>
     <script type="text/javascript" src="../js/validarLogradouro.js"></script>
@@ -152,10 +150,9 @@
         "
             <script>
                 $('#usuarioId').attr('value', $usuarioId);
-                $('#usuarioId').attr('data-usuario-id', $usuarioId);
             </script>
-        ";
-    ?>
-    <script src="../js/edicao.js"></script>
+            ";
+            ?>
+    <script src='../js/edicao.js'></script>
 </body>
 </html>
